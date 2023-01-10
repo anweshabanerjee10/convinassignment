@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+
 import Navbar from './components/Navbar/Navbar'
+import Error from './pages/Error/Error'
 import Home from './pages/Home/Home'
 import Videos from './pages/Videos/Videos'
 
@@ -11,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="videos" element={<Videos />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   )

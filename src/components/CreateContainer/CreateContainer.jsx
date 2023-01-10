@@ -3,6 +3,7 @@ import { AiFillFileAdd } from "react-icons/ai";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { addVideo } from "../../redux/video/videoSlice";
+import { getId, guidGenerator } from "../../Utility/utility";
 
 const options = [
   { value: "Entertainment", label: "Entertainment" },
@@ -10,25 +11,6 @@ const options = [
   { value: "Technical", label: "Technical" },
 ];
 
-function guidGenerator() {
-  var S4 = function () {
-    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-  };
-  return (
-    S4() +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    S4() +
-    S4()
-  );
-}
 const INITIAL_STATE = {
   name: "",
   bucket: "",
@@ -59,19 +41,20 @@ function CreateContainer() {
       name: state.name,
       bucket: state.bucket,
       link: state.link,
+      videoId: getId(state.link),
     };
     dispatch(addVideo({ video }));
     setState(INITIAL_STATE);
   };
   return (
-    <div className="h-[320px] w-[95%] video-create-container shadow-md p-8">
+    <div className="h-[250px] w-[95%] video-create-container shadow-md">
       <div className="flex-[0.4] flex justify-center items-center">
         <div className="text-white flex gap-2 cursor-pointer">
           <AiFillFileAdd size={28} />
           <span className="font-bold text-2xl">Create A Card</span>
         </div>
       </div>
-      <div className="flex-[0.6] bg-white rounded-md">
+      <div className="flex-[0.6] h-[110%] shadow-md bg-white rounded-lg -translate-y-5 pt-5">
         <form className="p-5 flex flex-col gap-4">
           <div className="flex w-full gap-3">
             <div className="flex flex-col gap-1 flex-[0.5] ">
@@ -100,8 +83,9 @@ function CreateContainer() {
             />
           </div>
           <button
-            className="w-[50%] bg-red-500 rounded-md mx-auto text-white font-semibold p-3"
+            className="w-[50%] rounded-md mx-auto text-white font-semibold p-3"
             onClick={handleSubmit}
+            style={{ background: "red" }}
           >
             Submit
           </button>

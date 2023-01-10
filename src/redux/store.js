@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import videoReducer from "./video/videoSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import videoReducer from './video/videoSlice'
 
 export default configureStore({
   reducer: {
@@ -7,4 +7,4 @@ export default configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
-});
+})

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillDelete, AiOutlineEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addHistory,
   changeBucket,
   deleteVideo,
   selectCard,
@@ -18,11 +19,10 @@ const options = [
 
 function Modal() {
   const dispatch = useDispatch();
-  const { name, videoId, id, bucket } = useSelector(selectCard);
+  const { name, videoId, id, bucket, link } = useSelector(selectCard);
   const [edit, setEdit] = useState(false);
   const [bucketEdit, setBucketEdit] = useState(bucket);
 
-  console.log(edit);
   const [value, setValue] = useState(() => ({
     value: bucket,
     label: bucket,
@@ -49,6 +49,20 @@ function Modal() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      dispatch(
+        addHistory({
+          name,
+          link,
+          time: new Date().toLocaleString(),
+        })
+      );
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="h-full w-full absolute top-0 left-0 z-10 bg-slate-400 bg-opacity-60 box-border ">
       <div className="m-[5%] bg-white h-[500px] w-[700px] mx-auto rounded-md">

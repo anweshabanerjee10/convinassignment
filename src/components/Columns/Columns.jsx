@@ -14,7 +14,8 @@ function Columnns({ name, id, addCard, data }) {
     link: "",
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!add) {
       setAdd(true);
       return;

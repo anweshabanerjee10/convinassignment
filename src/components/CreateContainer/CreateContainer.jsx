@@ -35,7 +35,13 @@ function CreateContainer() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!state.name || state.bucket === "Select..." || !state.link) return;
+    if (
+      !state.name ||
+      state.bucket === "Select..." ||
+      !state.bucket ||
+      !state.link
+    )
+      return;
     const video = {
       id: guidGenerator(),
       name: state.name,

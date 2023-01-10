@@ -3,11 +3,18 @@ import videoReducer from './video/videoSlice'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-const rootReducer = combineReducers({ video: videoReducer })
+const videoPersistConfig = {
+  key: 'video',
+  storage,
+  blacklist: ['selection', 'bufferCards'],
+}
+const videoPersistReducer = persistReducer(videoPersistConfig, videoReducer)
+const rootReducer = combineReducers({ video: videoPersistReducer })
 const persistConfig = {
   key: 'persisit-config',
   storage,
   version: 1,
+  blacklist: ['video'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

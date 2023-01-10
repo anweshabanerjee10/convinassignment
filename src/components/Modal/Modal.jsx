@@ -61,6 +61,7 @@ function Modal() {
       );
     }, 1500);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line
   }, []);
 
   return (

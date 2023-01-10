@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectCard,
   setModalOpen,
   addCardToBuffer,
   selectSelection,
